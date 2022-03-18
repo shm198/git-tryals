@@ -21,6 +21,10 @@ var userstatusdata = [
     {status: "Inactive"}
 ];
 
+let userdata = [
+    {username: 'root', password: 'root', fullname: 'Tryals Admin', role: 'Admin', status: 'Active'}
+]
+
 var subjectcatdata = [
     {subjectcatname: 'General', subjectcatorder: 10}
 ];
@@ -65,9 +69,7 @@ var phasefielddata = [
     {phasecatname: 'General', fieldname: 'Phase_number',  fieldinputtype: "Text Box", fieldorder: 10}
 ];
 
-let userdata = [
-    {username: 'root', password: 'root', fullname: 'Tryals Admin', role: 'Admin', status: 'Active'}
-]
+
 
 function seedrole(){
     Roles.deleteMany({}, function(err){
@@ -237,15 +239,13 @@ function seedsubjectfields(){
                     console.log(err);
                 }
                 console.log("Deleted the default SUBJECT fields");
-                    subjectfielddata.forEach(function(seedsubjectfielddata){
-                        subjectfield.create(seedsubjectfielddata, function(err,data){
+                        subjectfield.insertMany(subjectfielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
                                 console.log("Added the default SUBJECT fields");
                             }
                         });
-                    });
             });
         }
     });
