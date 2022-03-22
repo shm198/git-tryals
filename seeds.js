@@ -77,9 +77,8 @@ function seedrole(){
             console.log(err);
         }
         console.log("Deleted all roles");
-            roledata.forEach(function(x){
                 //x represent each data in the data array
-                Roles.create(x, function(err,roledata){
+                Roles.insertMany(roledata, function(err,data){
                     if (err){
                         console.log(err);
                     }else{
@@ -87,7 +86,6 @@ function seedrole(){
                     }
         
                 });
-            })
     });
 }
 
@@ -97,15 +95,13 @@ function seedDBstatus(){
             console.log(err);
         }
         console.log("Deleted all user status");
-            userstatusdata.forEach(function(seedstatusdata){
-                Status.create(seedstatusdata, function(err,data){
+                Status.insertMany(userstatusdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added a status");
                     }
                 });
-            });
     });
 }
 
@@ -115,75 +111,65 @@ function seedcat(){
             console.log(err);
         }
         console.log("Deleted SUBJECT cat General");
-            subjectcatdata.forEach(function(seedsubjectcatdata){
-                subjectcat.create(seedsubjectcatdata, function(err,data){
+                subjectcat.insertMany(subjectcatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added SUBJECT cat General");
                     }
                 });
-            });
     });
     studycat.deleteOne({studycatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted STUDY cat General");
-            studycatdata.forEach(function(seedstudycatdata){
-                studycat.create(seedstudycatdata, function(err,data){
+                studycat.insertMany(studycatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added STUDY cat General");
                     }
                 });
-            });
     });
     sitecat.deleteOne({sitecatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted SITE cat General");
-            sitecatdata.forEach(function(seedsitecatdata){
-                sitecat.create(seedsitecatdata, function(err,data){
+                sitecat.insertMany(sitecatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added SITE cat General");
                     }
                 });
-            });
     });
     visitcat.deleteOne({visitcatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted VISIT cat General");
-            visitcatdata.forEach(function(seedvisitcatdata){
-                visitcat.create(seedvisitcatdata, function(err,data){
+                visitcat.insertMany(visitcatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added VISIT cat General");
                     }
                 });
-            });
     });
     phasecat.deleteOne({phasecatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted PHASE cat General");
-            phasecatdata.forEach(function(seedphasecatdata){
-                phasecat.create(seedphasecatdata, function(err,data){
+                phasecat.insertMany(phasecatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added PHASE cat General");
                     }
                 });
-            });
     });
 }
 
@@ -255,15 +241,13 @@ function seedphasefields(){
                     console.log(err);
                 }
                 console.log("Deleted the default PHASE fields");
-                    phasefielddata.forEach(function(seedphasefielddata){
-                        phasefield.create(seedphasefielddata, function(err,data){
+                        phasefield.insertMany(phasefielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
                                 console.log("Added the default PHASE fields");
                             }
                         });
-                    });
             });
         }
     });
