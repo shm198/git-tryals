@@ -195,15 +195,13 @@ function seedstudyfields(){
                     console.log(err);
                 }
                 console.log("Deleted the default STUDY fields");
-                    studyfielddata.forEach(function(seedstudyfielddata){
-                        studyfield.create(seedstudyfielddata, function(err,data){
+                        studyfield.insertMany(studyfielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
                                 console.log("Added the default STUDY fields");
                             }
                         });
-                    });
             });
         }
     });
@@ -217,8 +215,7 @@ function seedsitefields(){
                     console.log(err);
                 }
                 console.log("Deleted the default SITE fields");
-                    sitefielddata.forEach(function(seedsitefielddata){
-                        sitefield.create(seedsitefielddata, function(err,data){
+                        sitefield.insertMany(sitefielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
@@ -226,7 +223,6 @@ function seedsitefields(){
                             }
                         });
                     });
-            });
         }
     });
 }
@@ -240,7 +236,7 @@ function seedsubjectfields(){
                 }
                 console.log("Deleted the default SUBJECT fields");
                         subjectfield.insertMany(subjectfielddata, function(err,data){
-                            if(err){
+                            if(err){ 
                                 console.log(err);
                             }else{
                                 console.log("Added the default SUBJECT fields");
