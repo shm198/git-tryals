@@ -75,6 +75,6 @@ app.use(reportsRoutes);
 //============APP CONFIG END======================//
 
 
-app.listen(3000, "127.0.0.1", function(){
-    console.log("Tryals is running on port 3000")
+app.listen(4000, "127.0.0.1", function(){
+    console.log("Tryals is running on port 4000.....")
 });

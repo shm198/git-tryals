@@ -21,6 +21,10 @@ var userstatusdata = [
     {status: "Inactive"}
 ];
 
+let userdata = [
+    {username: 'root', password: 'root', fullname: 'Tryals Admin', role: 'Admin', status: 'Active'}
+]
+
 var subjectcatdata = [
     {subjectcatname: 'General', subjectcatorder: 10}
 ];
@@ -65,9 +69,7 @@ var phasefielddata = [
     {phasecatname: 'General', fieldname: 'Phase_number',  fieldinputtype: "Text Box", fieldorder: 10}
 ];
 
-let userdata = [
-    {username: 'root', password: 'root', fullname: 'Tryals Admin', role: 'Admin', status: 'Active'}
-]
+
 
 function seedrole(){
     Roles.deleteMany({}, function(err){
@@ -75,9 +77,8 @@ function seedrole(){
             console.log(err);
         }
         console.log("Deleted all roles");
-            roledata.forEach(function(x){
                 //x represent each data in the data array
-                Roles.create(x, function(err,roledata){
+                Roles.insertMany(roledata, function(err,data){
                     if (err){
                         console.log(err);
                     }else{
@@ -85,7 +86,6 @@ function seedrole(){
                     }
         
                 });
-            })
     });
 }
 
@@ -95,15 +95,13 @@ function seedDBstatus(){
             console.log(err);
         }
         console.log("Deleted all user status");
-            userstatusdata.forEach(function(seedstatusdata){
-                Status.create(seedstatusdata, function(err,data){
+                Status.insertMany(userstatusdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added a status");
                     }
                 });
-            });
     });
 }
 
@@ -113,75 +111,65 @@ function seedcat(){
             console.log(err);
         }
         console.log("Deleted SUBJECT cat General");
-            subjectcatdata.forEach(function(seedsubjectcatdata){
-                subjectcat.create(seedsubjectcatdata, function(err,data){
+                subjectcat.insertMany(subjectcatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added SUBJECT cat General");
                     }
                 });
-            });
     });
     studycat.deleteOne({studycatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted STUDY cat General");
-            studycatdata.forEach(function(seedstudycatdata){
-                studycat.create(seedstudycatdata, function(err,data){
+                studycat.insertMany(studycatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added STUDY cat General");
                     }
                 });
-            });
     });
     sitecat.deleteOne({sitecatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted SITE cat General");
-            sitecatdata.forEach(function(seedsitecatdata){
-                sitecat.create(seedsitecatdata, function(err,data){
+                sitecat.insertMany(sitecatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added SITE cat General");
                     }
                 });
-            });
     });
     visitcat.deleteOne({visitcatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted VISIT cat General");
-            visitcatdata.forEach(function(seedvisitcatdata){
-                visitcat.create(seedvisitcatdata, function(err,data){
+                visitcat.insertMany(visitcatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added VISIT cat General");
                     }
                 });
-            });
     });
     phasecat.deleteOne({phasecatname: 'General'}, function(err){
         if(err) {
             console.log(err);
         }
         console.log("Deleted PHASE cat General");
-            phasecatdata.forEach(function(seedphasecatdata){
-                phasecat.create(seedphasecatdata, function(err,data){
+                phasecat.insertMany(phasecatdata, function(err,data){
                     if(err){
                         console.log(err);
                     }else{
                         console.log("Added PHASE cat General");
                     }
                 });
-            });
     });
 }
 
@@ -193,15 +181,13 @@ function seedstudyfields(){
                     console.log(err);
                 }
                 console.log("Deleted the default STUDY fields");
-                    studyfielddata.forEach(function(seedstudyfielddata){
-                        studyfield.create(seedstudyfielddata, function(err,data){
+                        studyfield.insertMany(studyfielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
                                 console.log("Added the default STUDY fields");
                             }
                         });
-                    });
             });
         }
     });
@@ -215,8 +201,7 @@ function seedsitefields(){
                     console.log(err);
                 }
                 console.log("Deleted the default SITE fields");
-                    sitefielddata.forEach(function(seedsitefielddata){
-                        sitefield.create(seedsitefielddata, function(err,data){
+                        sitefield.insertMany(sitefielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
@@ -224,7 +209,6 @@ function seedsitefields(){
                             }
                         });
                     });
-            });
         }
     });
 }
@@ -237,15 +221,13 @@ function seedsubjectfields(){
                     console.log(err);
                 }
                 console.log("Deleted the default SUBJECT fields");
-                    subjectfielddata.forEach(function(seedsubjectfielddata){
-                        subjectfield.create(seedsubjectfielddata, function(err,data){
-                            if(err){
+                        subjectfield.insertMany(subjectfielddata, function(err,data){
+                            if(err){ 
                                 console.log(err);
                             }else{
                                 console.log("Added the default SUBJECT fields");
                             }
                         });
-                    });
             });
         }
     });
@@ -259,15 +241,13 @@ function seedphasefields(){
                     console.log(err);
                 }
                 console.log("Deleted the default PHASE fields");
-                    phasefielddata.forEach(function(seedphasefielddata){
-                        phasefield.create(seedphasefielddata, function(err,data){
+                        phasefield.insertMany(phasefielddata, function(err,data){
                             if(err){
                                 console.log(err);
                             }else{
                                 console.log("Added the default PHASE fields");
                             }
                         });
-                    });
             });
         }
     });
