@@ -224,7 +224,7 @@ async function seedsitefields(){
         const count = await sitefield.countDocuments();
         if (count === 0) {
                 await sitefield.insertMany(sitefielddata);
-                console.log("Added sitefield data")
+                console.log("Added the default SITE fields data")
         }
         else {
             console.log ("There are user created Site Fields. We can't delete them");
@@ -235,44 +235,37 @@ async function seedsitefields(){
    }
 }
 
-function seedsubjectfields(){
-    subjectfield.countDocuments(function(err, count){
-        if (!err && count === 0){
-            subjectfield.deleteMany({}, function(err){
-                if(err) {
-                    console.log(err);
-                }
-                console.log("Deleted the default SUBJECT fields");
-                        subjectfield.insertMany(subjectfielddata, function(err,data){
-                            if(err){ 
-                                console.log(err);
-                            }else{
-                                console.log("Added the default SUBJECT fields");
-                            }
-                        });
-            });
+async function seedsubjectfields(){
+    try {
+        const count = await subjectfield.countDocuments();
+        if (count === 0){
+            await subjectfield.insertMany(subjectfielddata);
+            console.log("Added the default SUBJECT fields data")
         }
-    });
+        else {
+            console.log ("There are user created Subject Fields. We can't delete them");
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 
-function seedphasefields(){
-    phasefield.countDocuments(function(err, count){
-        if (!err && count === 0){
-            phasefield.deleteMany({}, function(err){
-                if(err) {
-                    console.log(err);
-                }
-                console.log("Deleted the default PHASE fields");
-                        phasefield.insertMany(phasefielddata, function(err,data){
-                            if(err){
-                                console.log(err);
-                            }else{
-                                console.log("Added the default PHASE fields");
-                            }
-                        });
-            });
+async function seedphasefields() {
+    try {
+        const count = await phasefield.countDocuments();
+        if (count === 0){
+            console.log("we have some phase fields");
+            await phasefield.insertMany(phasefielddata);
+            console.log("Added the default PHASE fields");
         }
-    });
+        else {
+            console.log ("There are user created PHASE Fields. We can't delete them");
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 
 function seedUsers(){
