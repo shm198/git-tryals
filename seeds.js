@@ -16,6 +16,7 @@ var roledata = [
     {role: "Admin"},
     {role: "User"}
 ];
+
 var userstatusdata = [
     {status: "Active"},
     {status: "Inactive"}
@@ -70,44 +71,69 @@ var phasefielddata = [
 ];
 
 
+// function seedrole(){
+//     Roles.deleteMany({}, function(err){
+//         if(err) {
+//             console.log(err);
+//         }
+//         console.log("Deleted all roles");
+//                 //x represent each data in the data array
+//                 Roles.insertMany(roledata, function(err,data){
+//                     if (err){
+//                         console.log(err);
+//                     }else{
+//                         console.log("Added a role");
+//                     }
+//                 });
+//     });
+// }
 
-function seedrole(){
-    Roles.deleteMany({}, function(err){
-        if(err) {
-            console.log(err);
-        }
-        console.log("Deleted all roles");
-                //x represent each data in the data array
-                Roles.insertMany(roledata, function(err,data){
-                    if (err){
-                        console.log(err);
-                    }else{
-                        console.log("Added a role");
-                    }
-        
-                });
-    });
+async function seedrole() {
+    try {
+        await Roles.deleteMany({});
+        await Roles.insertMany(roledata);
+        console.log("Added a role");
+    }
+    catch (e)
+    {
+        console.log(e);
+    }
 }
 
-function seedDBstatus(){
-    Status.deleteMany({}, function(err){
-        if(err) {
-            console.log(err);
-        }
-        console.log("Deleted all user status");
-                Status.insertMany(userstatusdata, function(err,data){
-                    if(err){
-                        console.log(err);
-                    }else{
-                        console.log("Added a status");
-                    }
-                });
-    });
+
+
+// function seedDBstatus(){
+//     Status.deleteMany({}, function(err){
+//         if(err) {
+//             console.log(err);
+//         }
+//         console.log("Deleted all user status");
+//                 Status.insertMany(userstatusdata, function(err,data){
+//                     if(err){
+//                         console.log(err);
+//                     }else{
+//                         console.log("Added a status");
+//                     }
+//                 });
+//     });
+// }
+
+async function seedDBstatus(){
+    try {
+        await Status.deleteMany({});
+        await Status.insertMany(userstatusdata);
+        console.log("Added a status");
+    }
+    catch (e) {
+        console.log(e)
+    }
 }
+
 
 function seedcat(){
     subjectcat.deleteOne({subjectcatname: 'General'}, function(err){
         if(err) {
+            
             console.log(err);
         }
         console.log("Deleted SUBJECT cat General");
@@ -173,84 +199,73 @@ function seedcat(){
     });
 }
 
-function seedstudyfields(){
-    studyfield.countDocuments(function(err, count){
-        if (!err && count === 0){
-            studyfield.deleteMany({}, function(err){
-                if(err) {
-                    console.log(err);
-                }
-                console.log("Deleted the default STUDY fields");
-                        studyfield.insertMany(studyfielddata, function(err,data){
-                            if(err){
-                                console.log(err);
-                            }else{
-                                console.log("Added the default STUDY fields");
-                            }
-                        });
-            });
+
+async function seedstudyfields(){
+    try {
+        const countDocs = await studyfield.countDocuments();
+        if (countDocs === 0){
+
+            await studyfield.insertMany(studyfielddata);
+            console.log("Added the default STUDY fields");
         }
-    });
+        else {
+            console.log ("There are user created Study Fields. We can't delete them");
+        }
+    }
+    catch (e) {
+            console.log(e);
+    }
+      
 }
 
-function seedsitefields(){
-    sitefield.countDocuments(function(err, count){
-        if (!err && count === 0){
-            sitefield.deleteMany({}, function(err){
-                if(err) {
-                    console.log(err);
-                }
-                console.log("Deleted the default SITE fields");
-                        sitefield.insertMany(sitefielddata, function(err,data){
-                            if(err){
-                                console.log(err);
-                            }else{
-                                console.log("Added the default SITE fields");
-                            }
-                        });
-                    });
+
+async function seedsitefields(){
+   try {
+        const count = await sitefield.countDocuments();
+        if (count === 0) {
+                await sitefield.insertMany(sitefielddata);
+                console.log("Added the default SITE fields data")
         }
-    });
+        else {
+            console.log ("There are user created Site Fields. We can't delete them");
+        }
+   }
+   catch (e){
+       console.log(e);
+   }
 }
 
-function seedsubjectfields(){
-    subjectfield.countDocuments(function(err, count){
-        if (!err && count === 0){
-            subjectfield.deleteMany({}, function(err){
-                if(err) {
-                    console.log(err);
-                }
-                console.log("Deleted the default SUBJECT fields");
-                        subjectfield.insertMany(subjectfielddata, function(err,data){
-                            if(err){ 
-                                console.log(err);
-                            }else{
-                                console.log("Added the default SUBJECT fields");
-                            }
-                        });
-            });
+async function seedsubjectfields(){
+    try {
+        const count = await subjectfield.countDocuments();
+        if (count === 0){
+            await subjectfield.insertMany(subjectfielddata);
+            console.log("Added the default SUBJECT fields data")
         }
-    });
+        else {
+            console.log ("There are user created Subject Fields. We can't delete them");
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 
-function seedphasefields(){
-    phasefield.countDocuments(function(err, count){
-        if (!err && count === 0){
-            phasefield.deleteMany({}, function(err){
-                if(err) {
-                    console.log(err);
-                }
-                console.log("Deleted the default PHASE fields");
-                        phasefield.insertMany(phasefielddata, function(err,data){
-                            if(err){
-                                console.log(err);
-                            }else{
-                                console.log("Added the default PHASE fields");
-                            }
-                        });
-            });
+async function seedphasefields() {
+    try {
+        const count = await phasefield.countDocuments();
+        if (count === 0){
+            console.log("we have some phase fields");
+            await phasefield.insertMany(phasefielddata);
+            console.log("Added the default PHASE fields");
         }
-    });
+        else {
+            console.log ("There are user created PHASE Fields. We can't delete them");
+        }
+    }
+    catch (e) {
+        console.log(e);
+    }
 }
 
 function seedUsers(){
