@@ -9,9 +9,8 @@ var LocalStrategy = require("passport-local");
 var flash = require("connect-flash");
 var user = require("./models/user");
 var roles = require("./models/roles");
-require("./models/studycat");
+var studycat = require("./models/studycat");
 var studyfields = require("./models/studyfield");
-require("./config/routes");
 var seedDB = require("./seeds");
 var seedrole = seedDB.seedrole;
 var seedDBstatus = seedDB.seedDBstatus;
@@ -31,7 +30,13 @@ seedsubjectfields();
 seedphasefields();
 seedUsers();
 
-
+var adminstudyRoutes = require("./routes/adminstudy");
+var authRoutes = require("./routes/auth");
+var adminsiteRoutes = require("./routes/adminsite");
+var adminsubjectRoutes = require("./routes/adminsubject");
+var phaseRoutes = require("./routes/phase");
+var visitRoutes = require("./routes/visit");
+var reportsRoutes = require("./routes/reports");
 
 //============APP CONFIG START======================//
 mongoose.connect("mongodb://localhost:27017/Tryals", { useNewUrlParser: true, useFindAndModify: false });
@@ -58,12 +63,18 @@ app.use(function(req, res, next){
     res.locals.success = req.flash("success");
     next();
 });
-
+app.use(authRoutes);
+app.use(adminstudyRoutes);
+app.use(adminsubjectRoutes);
+app.use(adminsiteRoutes);
+app.use(phaseRoutes);
+app.use(visitRoutes);
+app.use(reportsRoutes);
 
 //---------------------------------------
 //============APP CONFIG END======================//
 
 
-app.listen(4000, "127.0.0.1", function(){
-    console.log("Tryals is running on port 4000.....")
+app.listen(3000, "127.0.0.1", function(){
+    console.log("Tryals is running on port 3000")
 });
