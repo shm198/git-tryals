@@ -6,7 +6,8 @@ var visitfieldsSchema = new mongoose.Schema({
     fieldinputtype: String,
     checkboxvalues: [String],
     radiovalues: [String],
-    fieldorder:  Number
+    fieldorder:  Number,
+    Approved: Boolean
 });
 
 module.exports = mongoose.model("visitfields", visitfieldsSchema);
