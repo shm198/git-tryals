@@ -1,8 +1,6 @@
 var mongoose = require("mongoose");
+let study = require('./study');
 
-var studyStageSchema = new mongoose.Schema({
-    Study_short_name: String,
-    Study_name:  String
-},{ strict: false });
+let studyStageSchema = new mongoose.Schema(study.model("study").schema,{ strict: false });
 
 module.exports = mongoose.model("studyStage", studyStageSchema);

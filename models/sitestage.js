@@ -1,8 +1,6 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
+let site = require('./site');
 
-var siteStageSchema = new mongoose.Schema({
-    Site_short_name: String,
-    Site_name:  String
-},{ strict: false });
+let siteStageSchema = new mongoose.Schema(site.model("site").schema,{ strict: false });
 
 module.exports = mongoose.model("siteStage", siteStageSchema);

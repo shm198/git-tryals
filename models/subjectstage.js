@@ -1,14 +1,7 @@
 var mongoose = require("mongoose");
+let subject = require('./subject');
 
-var subjectStageschema = new mongoose.Schema({
-    Subject_Name: String,
-    Subject_DOB: Date,
-    Subject_Address: String,
-    Subject_City: String,
-    Subject_Prov: String,
-    Subject_zip: String,
-    Subject_Country: String
-},{ strict: false });
+let subjectStageSchema = new mongoose.Schema(subject.model("subject").schema,{ strict: false });
 
 subjectschema.index({ Subject_Name: "text" })
 

@@ -1,7 +1,6 @@
-var mongoose = require("mongoose");
+let mongoose = require("mongoose");
+let phase = require ('./phase');
 
-var phaseStageSchema = new mongoose.Schema({
-    Phase_number:  Number
-},{ strict: false });
+let phaseStageSchema = new mongoose.Schema(phase.model('phase').schema,{ strict: false });
 
 module.exports = mongoose.model("phaseStage", phaseStageSchema);

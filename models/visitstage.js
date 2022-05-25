@@ -1,11 +1,6 @@
 var mongoose = require("mongoose");
+let visit = require('./visit');
 
-var visitStageSchema = new mongoose.Schema({
-    Study: {type: mongoose.Schema.Types.ObjectId, ref: "study"},
-    Site:  {type: mongoose.Schema.Types.ObjectId, ref: "site"},
-    Subject: {type: mongoose.Schema.Types.ObjectId, ref: "subject"},
-    Phase: {type: mongoose.Schema.Types.ObjectId, ref: "phase"},
-    Visit_date: Date
-},{ strict: false });
+let visitStageSchema = new mongoose.Schema(subject.model("visit").schema,{ strict: false });
 
 module.exports = mongoose.model("visitStage", visitStageSchema);
