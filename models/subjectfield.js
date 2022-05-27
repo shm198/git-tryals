@@ -6,7 +6,8 @@ var subjectfieldsSchema = new mongoose.Schema({
     fieldinputtype: String,
     checkboxvalues: [String],
     radiovalues: [String],
-    fieldorder:  Number
+    fieldorder:  Number,
+    Approved: Boolean
 });
 
 // var studyfields = mongoose.model("studyfields", studyfieldsSchema);

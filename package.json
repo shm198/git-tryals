@@ -1,6 +1,6 @@
 {
   "name": "tryals",
-  "version": "0.0.94",
+  "version": "0.0.100",
   "description": "Clinical Trials Software",
   "main": "app.js",
   "scripts": {

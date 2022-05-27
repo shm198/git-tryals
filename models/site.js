@@ -5,5 +5,4 @@ var siteSchema = new mongoose.Schema({
     Site_name:  String
 },{ strict: false });
 
-// var studyfields = mongoose.model("studyfields", studyfieldsSchema);
 module.exports = mongoose.model("site", siteSchema);
